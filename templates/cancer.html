@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Cancer Disease</title>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"><link rel="stylesheet" href="./style.css">
+
+<style>
+
+  body {
+  background-image: linear-gradient(135deg, #FAB2FF 10%, #1904E5 100%);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  font-family: "Open Sans", sans-serif;
+  color: #333333;
+}
+
+/* Full Form */
+
+.box-form {
+  margin: 0 auto;
+  width: 80%;
+  background: #FFFFFF;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex: 1 1 100%;
+  align-items: stretch;
+  justify-content: space-between;
+  box-shadow: 0 0 20px 6px #090b6f85;
+}
+@media (max-width: 980px) {
+  .box-form {
+    flex-flow: wrap;
+    text-align: center;
+    align-content: center;
+    align-items: center;
+  }
+}
+.box-form div {
+  height: auto;
+}
+
+/* Left side of form */
+
+.box-form .left {
+  color: #FFFFFF;
+  background-size: 100%;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-image: url("https://p5-tt.byteimg.com/origin/pgc-image/9550d037a1e04480b3e4613f1a88f7b0");
+  overflow: hidden;
+}
+.box-form .left .overlay {
+  padding: 30px;
+  width: 100%;
+  height: 100%;
+  background: #5961f9ad;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.box-form .left .overlay h1 {
+  font-size: 5vmax;
+  line-height: 1;
+  font-weight: 900;
+  margin-top: 100%;
+  margin-left: 10%;
+  margin-right: 10%;
+  
+}
+.box-form .left .overlay span p {
+  margin-top: 30px;
+  font-weight: 900;
+}
+.box-form .left .overlay span a {
+  background: #3b5998;
+  color: #FFFFFF;
+  margin-top: 10px;
+  padding: 14px 50px;
+  margin:0px 30px 15px 30px;
+  border-radius: 100px;
+  display: inline-block;
+  box-shadow: 0 3px 6px 1px #042d4657;
+}
+.box-form .left .overlay span a:last-child {
+  background: #1dcaff;
+  margin-left: 30px;
+}
+
+/* Right side of  from */
+
+.box-form .right {
+  width: 100%;
+  padding: 50px;
+  overflow: hidden;
+  margin: 0.5%;
+  
+}
+@media (max-width: 980px) {
+  .box-form .right {
+    width: 100%;
+  }
+}
+.box-form .right h5 {
+  font-size: 5vmax;
+  line-height: 1;
+  padding:0% 30% 0% 25%;
+  
+}
+.box-form .right p {
+  font-size: 14px;
+  color: #B0B3B9;
+}
+.box-form .right .inputs {
+  overflow: hidden;
+}
+.box-form .right input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 25px;
+  font-size: 16px;
+  border: none;
+  outline: none;
+  border-bottom: 2px solid #B0B3B9;
+}
+
+.box-form .right button {
+  float: right;
+  color: #fff;
+  font-size: 16px;
+  margin-top: 50px; 
+  padding: 12px 35px;
+  border-radius: 50px;
+  display: inline-block;
+  border: 0;
+  outline: 0;
+  box-shadow: 0px 4px 20px 0px #49c628a6;
+  background-image: linear-gradient(135deg, #70F570 10%, #49C628 100%);
+}
+
+/* Range sliders */
+
+.slidecontainer {
+  width: 100%;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 0.01px;
+  border-radius: 0.5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #6804aa;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #6804aa;
+  cursor: pointer;
+}
+<!--report-->
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 5px;
+  text-align: left;
+}
+</style>
+</head>
+<body>
+
+<div class="box-form">
+	<div class="left">
+		<div class="overlay">
+		<h1 style="padding-bottom:0%;margin-bottom:0%">Predicted Output is </h1>
+		<!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+		Curabitur et est sed felis aliquet sollicitudin</p> -->
+    <br>
+    <h2 style="color:{{cor}};font-size: 5vmax;
+                            line-height: 1;
+                            font-weight: 900;
+                            margin-top:0%;
+                            margin-left: 10%;
+                            margin-right: 10%;">{{predict_text}}
+    </h2>
+    <centre>
+      <span>
+        <a href="/home"><i class="fa fa-home" aria-hidden="true"> Home</i></a><br>
+        <a href="javascript:history.go(0)"><i class="fa fa-refresh" aria-hidden="true"></i> Reset</a>    
+      </span>
+    </centre>
+            <div  id="printableArea">
+                <div>
+                   <h2 style="text-align: center;color:; font-size:3vmax"><b>Patient Report</b></h2>
+                </div>
+                <h2>Patient Personal Details:</h2>
+
+                <table style="width:100%">
+                    <tr>
+                        <th>Name:</th>
+                        <th>Mobile:</th>
+                        <th>Email:</th>
+                        <th>DOB:</th>
+
+
+                    </tr>
+                    <tr>
+                        <td>{{name}}</td>
+                        <td>8928669402</td>
+                        <td>{{email}}</td>
+                        <td>{{dob}}</td>
+
+
+                    </tr>
+                </table>
+
+                <h2>Report Details:</h2>
+
+                <table style="width:100%">
+
+                    {%for i in range(length)%}
+                    <tr>
+                        <th>{{kcol[i]}}:</th>
+                        <td>{{pentered[i]}}</td>
+                    </tr>
+                    {%endfor%}
+
+                </table>
+                <p style="text-align: center;">Final Predicted Output is</p> <h3 style="color:{{cor}};text-align: center;">{{predict_text}}</h3>
+            </div>
+           <input type="button" style="Text-align:centre; padding:2% 1%; display: block; width: 200px; margin: 0 auto; " onclick="printDiv('printableArea')" value="Generate Report" />
+		</div>
+	</div>
+	
+	
+	<div class="right">
+    <form action="{{url_for('resultC')}}" method="post" id="form">
+      <h5>Cancer Detection</h5>
+      <p >Enter the correct details of the patient below.</p> 
+
+      <div class="slidecontainer">
+        <input class="slider" min="5" max="30" step="0.01" value="" type="range" class="form-control-range" id="radius_mean", name="radius_mean" placeholder="radius_mean">
+      <p>radius_mean <span id="demo1"></span></p>
+  </div>
+<!--        <div class="slidecontainer">-->
+<!--             <input class="slider" min="0" max="40" step="0.01" value="" type="range" class="form-control-range" id="texture_mean", name="texture_mean" placeholder="texture_mean">-->
+<!--            <p>texture_mean <span id="demo2"></span></p>-->
+<!--        </div>-->
+
+
+  <div class="slidecontainer">
+       <input class="slider" min="42" max="190" step="0.01" value="" type="range" class="form-control-range" id="perimeter_mean", name="perimeter_mean" placeholder="perimeter_mean">
+      <p>perimeter_mean <span id="demo3"></span></p>
+  </div>
+  <div class="slidecontainer">
+     <input class="slider" min="142" max="2502" step="1" value="" type="range" class="form-control-range" id="area_mean", name="area_mean" placeholder="area_mean">
+      <p>area_mean <span id="demo4"></span></p>
+ </div>
+<!--        <div class="slidecontainer">-->
+<!--              <input class="slider" min="0" max="0.2" step="0.010" value="" type="range" class="form-control-range" id="smoothness_mean", name="smoothness_mean" placeholder="smoothness_mean">-->
+<!--            <p>smoothness_mean <span id="demo5"></span></p>-->
+<!--        </div>-->
+<!--        <div class="slidecontainer">-->
+<!--             <input class="slider" min="0" max="0.5" step="0.010" value=""  type="range" class="form-control-range" id="compactness_mean", name="compactness_mean" placeholder="compactness_mean">-->
+<!--            <p>compactness_mean <span id="demo6"></span></p>-->
+<!--        </div>-->
+  <div class="slidecontainer">
+       <input class="slider" min="0" max="0.5" step="0.010" value="" type="range" class="form-control-range" id="concavity_mean", name="concavity_mean" placeholder="concavity_mean">
+      <p>concavity_mean <span id="demo7"></span></p>
+  </div>
+
+
+  <div class="slidecontainer">
+     <input class="slider" min="0" max="0.21" step="0.010" value="" type="range" class="form-control-range" id="concave points_mean", name="concave points_mean" placeholder="concave points_mean">
+      <p>concave points_mean <span id="demo8"></span></p>
+ </div>
+<!--       <div class="slidecontainer">-->
+<!--              <input class="slider" min="0" max="0.5" step="0.010" value="" type="range" class="form-control-range" id="symmetry_mean", name="symmetry_mean" placeholder="symmetry_mean">-->
+<!--           <p>symmetry_mean <span id="demo9"></span></p>-->
+<!--       </div>-->
+<!--        <div class="slidecontainer">-->
+<!--             <input class="slider" min="0" max="0.2" step="0.0010" value="" type="range" class="form-control-range" id="fractal_dimension_mean", name="fractal_dimension_mean" placeholder="fractal_dimension_mean">-->
+<!--            <p>fractal_dimension_mean <span id="demo10"></span></p>-->
+<!--        </div>-->
+  <div class="slidecontainer">
+       <input class="slider" min="0.1" max="2.9" step="0.0010" value="" type="range" class="form-control-range" id="radius_se", name="radius_se" placeholder="radius_se">
+      <p>radius_se <span id="demo11"></span></p>
+  </div>
+<!--        <div class="slidecontainer">-->
+<!--           <input class="slider" min="0" max="5" step="0.010" value="" type="range" class="form-control-range" id="texture_se", name="texture_se" placeholder="texture_se">-->
+<!--            <p>texture_se <span id="demo12"></span></p>-->
+<!--       </div>-->
+
+
+  <div class="slidecontainer">
+        <input class="slider" min="0.6" max="22" step="0.10" value="" type="range" class="form-control-range" id="perimeter_se", name="perimeter_se" placeholder="perimeter_se">
+      <p>perimeter_se<span id="demo13"></span></p>
+  </div>
+  <div class="slidecontainer">
+       <input class="slider" min="6" max="545" step="0.010" value="" type="range" class="form-control-range" id="area_se", name="area_se" placeholder="area_se">
+      <p>area_se <span id="demo14"></span></p>
+  </div>
+<!--        <div class="slidecontainer">-->
+<!--             <input class="slider" min="0" max="0.05" step="0.0010" value="" type="range" class="form-control-range" id="smoothness_se", name="smoothness_se" placeholder="smoothness_se">-->
+<!--            <p>smoothness_se <span id="demo15"></span></p>-->
+<!--        </div>-->
+<!--        <div class="slidecontainer">-->
+<!--           <input class="slider" min="0" max="0.2" step="0.010" value="" type="range" class="form-control-range" id="compactness_se", name="compactness_se" placeholder="compactness_se">-->
+<!--            <p>compactness_se <span id="demo16"></span></p>-->
+<!--       </div>-->
+<!--        <div class="slidecontainer">-->
+<!--             <input class="slider" min="0" max="0.5" step="0.010" value="" type="range" class="form-control-range" id="concavity_se", name="concavity_se" placeholder="concavity_se">-->
+<!--            <p>concavity_se <span id="demo17"></span></p>-->
+<!--        </div>-->
+
+
+<!--        <div class="slidecontainer">-->
+<!--             <input class="slider" min="0" max="0.05" step="0.0010" value="" type="range" class="form-control-range" id="concave points_se", name="concave points_se" placeholder="concave points_se">-->
+<!--            <p>concave points_se: <span id="demo18"></span></p>-->
+<!--        </div>-->
+<!--        <div class="slidecontainer">-->
+<!--           <input class="slider" min="0" max="0.1" step="0.0010"  value="" type="range" class="form-control-range" id="symmetry_se", name="symmetry_se" placeholder="symmetry_se">-->
+<!--            <p>symmetry_se: <span id="demo19"></span></p>-->
+<!--       </div>-->
+<!--       <div class="slidecontainer">-->
+<!--              <input class="slider" min="0" max="0.05" step="0.0010" value="" type="range" class="form-control-range" id="fractal_dimension_se", name="fractal_dimension_se" placeholder="fractal_dimension_se">-->
+<!--           <p>fractal_dimension_se: <span id="demo20"></span></p>-->
+<!--        </div>-->
+  <div class="slidecontainer">
+       <input class="slider" min="6" max="40" step="0.010" value="" type="range" class="form-control-range" id="radius_worst", name="radius_worst" placeholder="radius_worst">
+      <p>radius_worst: <span id="demo21"></span></p>
+  </div>
+
+<!--        <div class="slidecontainer">-->
+<!--             <input class="slider" min="0" max="50" step="0.010" value="" type="range" class="form-control-range" id="texture_worst", name="texture_worst" placeholder="texture_worst">-->
+<!--            <p>texture_worst: <span id="demo22"></span></p>-->
+<!--        </div>-->
+
+        <div class="slidecontainer">
+       <input class="slider" min="50" max="255" step="0.010" value="" type="range" class="form-control-range" id="perimeter_worst", name="perimeter_worst" placeholder="perimeter_worst">
+      <p>perimeter_worst: <span id="demo23"></span></p>
+  </div>
+  <div class="slidecontainer">
+     <input class="slider" min="180" max="4300" step="0.10" value="" type="range" class="form-control-range" id="area_worst", name="area_worst" placeholder="area_worst">
+      <p>area_worst: <span id="demo24"></span></p>
+ </div>
+<!--        <div class="slidecontainer">-->
+<!--             <input class="slider" min="0" max="0.5" step="0.010" value="" type="range" class="form-control-range" id="smoothness_worst", name="smoothness_worst" placeholder="smoothness_worst">-->
+<!--            <p>smoothness_worst: <span id="demo25"></span></p>-->
+<!--        </div>-->
+
+
+<!--        <div class="slidecontainer">-->
+<!--             <input class="slider" min="0" max="2" step="0.010" value="" type="range" class="form-control-range" id="compactness_worst", name="compactness_worst" placeholder="compactness_worst">-->
+<!--            <p>compactness_worst: <span id="demo26"></span></p>-->
+<!--        </div>-->
+  <div class="slidecontainer">
+     <input class="slider" min="0" max="1.3" step="0.010" value="" type="range" class="form-control-range" id="concavity_worst", name="concavity_worst" placeholder="concavity_worst">
+      <p>concavity_worst: <span id="demo27"></span></p>
+ </div>
+ <div class="slidecontainer">
+        <input class="slider" min="0" max="0.3" step="0.010" value="" type="range" class="form-control-range" id="concave points_worst", name="concave points_worst" placeholder="concave points_worst">
+     <p>concave points_worst: <span id="demo28"></span></p>
+  </div>
+<!--        <div class="slidecontainer">-->
+<!--             <input class="slider" min="0" max="1" step="0.010" value="" type="range" class="form-control-range" id="symmetry_worst", name="symmetry_worst" placeholder="symmetry_worst">-->
+<!--            <p>symmetry_worst: <span id="demo29"></span></p>-->
+<!--        </div>-->
+
+<!--        <div class="slidecontainer">-->
+<!--             <input class="slider" min="0" max="0.5" step="0.010" value="" type="range" class="form-control-range" id="fractal_dimension_worst", name="fractal_dimension_worst" placeholder="fractal_dimension_worst">-->
+<!--            <p>fractal_dimension_worst: <span id="demo30"></span></p>-->
+<!--        </div>-->
+
+
+      <button style="width: 100%;">Predict</button>      
+    </form>
+	</div>
+	
+</div>
+<script>
+    function printDiv(divName) {
+     var printContents = document.getElementById(divName).innerHTML;
+     var originalContents = document.body.innerHTML;
+
+     document.body.innerHTML = printContents;
+
+     window.print();
+
+     document.body.innerHTML = originalContents;
+}
+</script>
+<script>
+    var slider1 = document.getElementById("radius_mean");
+    var output1 = document.getElementById("demo1");
+    output1.innerHTML = slider1.value; // Display the default slider value
+    
+    // Update the current slider value (each time you drag the slider handle)
+    slider1.oninput = function() {
+      output1.innerHTML = this.value;
+    }
+    </script>
+    
+    <script>
+    var slider2 = document.getElementById("texture_mean");
+    var output2 = document.getElementById("demo2");
+    output2.innerHTML = slider2.value; // Display the default slider value
+    
+    // Update the current slider value (each time you drag the slider handle)
+    slider2.oninput = function() {
+      output2.innerHTML = this.value;
+    }
+    </script>
+    
+    <script>
+    var slider3 = document.getElementById("perimeter_mean");
+    var output3 = document.getElementById("demo3");
+    output3.innerHTML = slider3.value; // Display the default slider value
+    
+    // Update the current slider value (each time you drag the slider handle)
+    slider3.oninput = function() {
+      output3.innerHTML = this.value;
+    }
+    </script>
+    
+    <script>
+    var slider4 = document.getElementById("area_mean");
+    var output4 = document.getElementById("demo4");
+    output4.innerHTML = slider4.value; // Display the default slider value
+    
+    // Update the current slider value (each time you drag the slider handle)
+    slider4.oninput = function() {
+      output4.innerHTML = this.value;
+    }
+    </script>
+    <script>
+    var slider5 = document.getElementById("smoothness_mean");
+    var output5= document.getElementById("demo5");
+    output5.innerHTML = slider5.value; // Display the default slider value
+    
+    // Update the current slider value (each time you drag the slider handle)
+    slider5.oninput = function() {
+      output5.innerHTML = this.value;
+    }
+    </script>
+    
+    <script>
+    var slider6 = document.getElementById("compactness_mean");
+    var output6 = document.getElementById("demo6");
+    output6.innerHTML = slider6.value; // Display the default slider value
+    
+    // Update the current slider value (each time you drag the slider handle)
+    slider6.oninput = function() {
+      output6.innerHTML = this.value;
+    }
+    </script>
+    
+    <script>
+    var slider7 = document.getElementById("concavity_mean");
+    var output7 = document.getElementById("demo7");
+    output7.innerHTML = slider7.value; // Display the default slider value
+    
+    // Update the current slider value (each time you drag the slider handle)
+    slider7.oninput = function() {
+      output7.innerHTML = this.value;
+    }
+    </script>
+    
+    <script>
+    var slider8 = document.getElementById("concave points_mean");
+    var output8 = document.getElementById("demo8");
+    output8.innerHTML = slider8.value; // Display the default slider value
+    
+    // Update the current slider value (each time you drag the slider handle)
+    slider8.oninput = function() {
+      output8.innerHTML = this.value;
+    }
+    </script>
+    
+    <script>
+    var slider9 = document.getElementById("symmetry_mean");
+    var output9 = document.getElementById("demo9");
+    output9.innerHTML = slider9.value; // Display the default slider value
+    
+    // Update the current slider value (each time you drag the slider handle)
+    slider9.oninput = function() {
+      output9.innerHTML = this.value;
+    }
+    </script>
+    
+    
+    <script>
+    var slider10 = document.getElementById("fractal_dimension_mean");
+    var output10 = document.getElementById("demo10");
+    output10.innerHTML = slider10.value; // Display the default slider value
+    
+    // Update the current slider value (each time you drag the slider handle)
+    slider10.oninput = function() {
+      output10.innerHTML = this.value;
+    }
+    </script>
+    
+    <script>
+    var slider11 = document.getElementById("radius_se");
+    var output11 = document.getElementById("demo11");
+    output11.innerHTML = slider11.value; // Display the default slider value
+    
+    // Update the current slider value (each time you drag the slider handle)
+    slider11.oninput = function() {
+      output11.innerHTML = this.value;
+    }
+    </script>
+    
+    <script>
+    var slider12 = document.getElementById("texture_se");
+    var output12 = document.getElementById("demo12");
+    output12.innerHTML = slider12.value; // Display the default slider value
+    
+    // Update the current slider value (each time you drag the slider handle)
+    slider12.oninput = function() {
+      output12.innerHTML = this.value;
+    }
+    </script>
+    
+    <script>
+    var slider13 = document.getElementById("perimeter_se");
+    var output13 = document.getElementById("demo13");
+    output13.innerHTML = slider13.value; // Display the default slider value
+    
+    // Update the current slider value (each time you drag the slider handle)
+    slider13.oninput = function() {
+      output13.innerHTML = this.value;
+    }
+    </script>
+    
+    <script>
+    var slider14 = document.getElementById("area_se");
+    var output14 = document.getElementById("demo14");
+    output14.innerHTML = slider14.value; // Display the default slider value
+    
+    // Update the current slider value (each time you drag the slider handle)
+    slider14.oninput = function() {
+      output14.innerHTML = this.value;
+    }
+    </script>
+    
+    <script>
+    var slider15 = document.getElementById("smoothness_se");
+    var output15 = document.getElementById("demo15");
+    output15.innerHTML = slider15.value; // Display the default slider value
+    
+    // Update the current slider value (each time you drag the slider handle)
+    slider15.oninput = function() {
+      output15.innerHTML = this.value;
+    }
+    </script>
+    
+    <script>
+    var slider16 = document.getElementById("compactness_se");
+    var output16 = document.getElementById("demo16");
+    output16.innerHTML = slider16.value; // Display the default slider value
+    
+    // Update the current slider value (each time you drag the slider handle)
+    slider16.oninput = function() {
+      output16.innerHTML = this.value;
+    }
+    </script>
+    
+    <script>
+    var slider17 = document.getElementById("concavity_se");
+    var output17 = document.getElementById("demo17");
+    output17.innerHTML = slider17.value; // Display the default slider value
+    
+    // Update the current slider value (each time you drag the slider handle)
+    slider17.oninput = function() {
+      output17.innerHTML = this.value;
+    }
+    </script>
+    
+    <script>
+    var slider18 = document.getElementById("concave points_se");
+    var output18 = document.getElementById("demo18");
+    output18.innerHTML = slider18.value; // Display the default slider value
+    
+    // Update the current slider value (each time you drag the slider handle)
+    slider18.oninput = function() {
+      output18.innerHTML = this.value;
+    }
+    </script>
+    
+    <script>
+    var slider19 = document.getElementById("symmetry_se");
+    var output19 = document.getElementById("demo19");
+    output19.innerHTML = slider19.value; // Display the default slider value
+    
+    // Update the current slider value (each time you drag the slider handle)
+    slider19.oninput = function() {
+      output19.innerHTML = this.value;
+    }
+    </script>
+    
+    <script>
+    var slider20 = document.getElementById("fractal_dimension_se");
+    var output20 = document.getElementById("demo20");
+    output20.innerHTML = slider20.value; // Display the default slider value
+    
+    // Update the current slider value (each time you drag the slider handle)
+    slider20.oninput = function() {
+      output20.innerHTML = this.value;
+    }
+    </script>
+    
+    <script>
+    var slider21 = document.getElementById("radius_worst");
+    var output21 = document.getElementById("demo21");
+    output21.innerHTML = slider21.value; // Display the default slider value
+    
+    // Update the current slider value (each time you drag the slider handle)
+    slider21.oninput = function() {
+      output21.innerHTML = this.value;
+    }
+    </script>
+    
+    <script>
+    var slider22 = document.getElementById("texture_worst");
+    var output22 = document.getElementById("demo22");
+    output22.innerHTML = slider22.value; // Display the default slider value
+    
+    // Update the current slider value (each time you drag the slider handle)
+    slider22.oninput = function() {
+      output22.innerHTML = this.value;
+    }
+    </script>
+    
+    
+    
+    <script>
+    var slider23 = document.getElementById("perimeter_worst");
+    var output23 = document.getElementById("demo23");
+    output23.innerHTML = slider23.value; // Display the default slider value
+    
+    // Update the current slider value (each time you drag the slider handle)
+    slider23.oninput = function() {
+      output23.innerHTML = this.value;
+    }
+    </script>
+    
+    <script>
+    var slider24 = document.getElementById("area_worst");
+    var output24 = document.getElementById("demo24");
+    output24.innerHTML = slider24.value; // Display the default slider value
+    
+    // Update the current slider value (each time you drag the slider handle)
+    slider24.oninput = function() {
+      output24.innerHTML = this.value;
+    }
+    </script>
+    
+    <script>
+    var slider25 = document.getElementById("smoothness_worst");
+    var output25 = document.getElementById("demo25");
+    output25.innerHTML = slider25.value; // Display the default slider value
+    
+    // Update the current slider value (each time you drag the slider handle)
+    slider25.oninput = function() {
+      output25.innerHTML = this.value;
+    }
+    </script>
+    
+    <script>
+    var slider26 = document.getElementById("compactness_worst");
+    var output26 = document.getElementById("demo26");
+    output26.innerHTML = slider26.value; // Display the default slider value
+    
+    // Update the current slider value (each time you drag the slider handle)
+    slider26.oninput = function() {
+      output26.innerHTML = this.value;
+    }
+    </script>
+    
+    <script>
+    var slider27 = document.getElementById("concavity_worst");
+    var output27 = document.getElementById("demo27");
+    output27.innerHTML = slider27.value; // Display the default slider value
+    
+    // Update the current slider value (each time you drag the slider handle)
+    slider27.oninput = function() {
+      output27.innerHTML = this.value;
+    }
+    </script>
+    
+    <script>
+    var slider28 = document.getElementById("concave points_worst");
+    var output28 = document.getElementById("demo28");
+    output28.innerHTML = slider28.value; // Display the default slider value
+    
+    // Update the current slider value (each time you drag the slider handle)
+    slider28.oninput = function() {
+      output28.innerHTML = this.value;
+    }
+    </script>
+    
+    <script>
+    var slider29 = document.getElementById("symmetry_worst");
+    var output29 = document.getElementById("demo29");
+    output29.innerHTML = slider29.value; // Display the default slider value
+    
+    // Update the current slider value (each time you drag the slider handle)
+    slider29.oninput = function() {
+      output29.innerHTML = this.value;
+    }
+    </script>
+    
+    <script>
+    var slider30 = document.getElementById("fractal_dimension_worst");
+    var output30 = document.getElementById("demo30");
+    output30.innerHTML = slider30.value; // Display the default slider value
+    
+    // Update the current slider value (each time you drag the slider handle)
+    slider30.oninput = function() {
+      output30.innerHTML = this.value;
+    }
+    </script>
+    
+
+</body>
+</html>

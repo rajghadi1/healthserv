@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Kidney Disease</title>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"><link rel="stylesheet" href="./style.css">
+
+<style>
+
+  body {
+  background-image: linear-gradient(135deg, #FAB2FF 10%, #1904E5 100%);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  font-family: "Open Sans", sans-serif;
+  color: #333333;
+}
+
+/* Full Form */
+
+.box-form {
+  margin: 0 auto;
+  width: 80%;
+  background: #FFFFFF;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex: 1 1 100%;
+  align-items: stretch;
+  justify-content: space-between;
+  box-shadow: 0 0 20px 6px #090b6f85;
+}
+@media (max-width: 980px) {
+  .box-form {
+    flex-flow: wrap;
+    text-align: center;
+    align-content: center;
+    align-items: center;
+  }
+}
+.box-form div {
+  height: auto;
+}
+
+/* Left side of form */
+
+.box-form .left {
+  color: #FFFFFF;
+  background-size: 100%;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-image: url("https://static.wixstatic.com/media/3012d6_75c656b8ebfe44cb812d215a5190d5e8~mv2.gif/v1/fit/w_106,h_107,q_90/3012d6_75c656b8ebfe44cb812d215a5190d5e8~mv2.gif");
+  overflow: hidden;
+}
+.box-form .left .overlay {
+  padding: 30px;
+  width: 100%;
+  height: 100%;
+  background: #5961f9ad;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.box-form .left .overlay h1 {
+  font-size: 5vmax;
+  line-height: 1;
+  font-weight: 900;
+  margin-top: 120%;
+  margin-left: 10%;
+  margin-right: 10%;
+  
+}
+.box-form .left .overlay span p {
+  margin-top: 30px;
+  font-weight: 900;
+}
+.box-form .left .overlay span a {
+  background: #3b5998;
+  color: #FFFFFF;
+  margin-top: 10px;
+  padding: 14px 50px;
+  margin:0px 30px 15px 30px;
+  border-radius: 100px;
+  display: inline-block;
+  box-shadow: 0 3px 6px 1px #042d4657;
+}
+.box-form .left .overlay span a:last-child {
+  background: #1dcaff;
+  margin-left: 30px;
+}
+
+/* Right side of  from */
+
+.box-form .right {
+  width: 100%;
+  padding: 50px;
+  overflow: hidden;
+  margin: 0.5%;
+  
+}
+@media (max-width: 980px) {
+  .box-form .right {
+    width: 100%;
+  }
+}
+.box-form .right h5 {
+  font-size: 5vmax;
+  line-height: 1;
+  padding:0% 30% 0% 25%;
+  
+}
+.box-form .right p {
+  font-size: 14px;
+  color: #B0B3B9;
+}
+.box-form .right .inputs {
+  overflow: hidden;
+}
+.box-form .right input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 25px;
+  font-size: 16px;
+  border: none;
+  outline: none;
+  border-bottom: 2px solid #B0B3B9;
+}
+
+.box-form .right button {
+  float: right;
+  color: #fff;
+  font-size: 16px;
+  margin-top: 50px; 
+  padding: 12px 35px;
+  border-radius: 50px;
+  display: inline-block;
+  border: 0;
+  outline: 0;
+  box-shadow: 0px 4px 20px 0px #49c628a6;
+  background-image: linear-gradient(135deg, #70F570 10%, #49C628 100%);
+}
+
+/* Range sliders */
+
+.slidecontainer {
+  width: 100%;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 0.01px;
+  border-radius: 0.5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #6804aa;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #6804aa;
+  cursor: pointer;
+}
+<!--report-->
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 5px;
+  text-align: left;
+}
+</style>
+</head>
+<body>
+
+<div class="box-form">
+	<div class="left">
+		<div class="overlay">
+		<h1 style="padding-bottom:0%;margin-bottom:0%">Predicted Output is </h1>
+		<!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+		Curabitur et est sed felis aliquet sollicitudin</p> -->
+    <br>
+    <h2 style="color:{{cor}};font-size: 5vmax;
+                            line-height: 1;
+                            font-weight: 900;
+                            margin-top:0%;
+                            margin-left: 10%;
+                            margin-right: 10%;">{{predict_text}}
+    </h2>
+    <centre>
+      <span>
+        <a href="/home"><i class="fa fa-home" aria-hidden="true"> Home</i></a><br>
+        <a href="javascript:history.go(0)"><i class="fa fa-refresh" aria-hidden="true"></i> Reset</a>
+
+      </span>
+    </centre>
+            <div  id="printableArea">
+                <div>
+                   <h2 style="text-align: center;color:; font-size:3vmax"><b>Patient Report</b></h2>
+                </div>
+                <h2>Patient Personal Details:</h2>
+
+                <table style="width:100%">
+                    <tr>
+                        <th>Name:</th>
+                        <th>Mobile:</th>
+                        <th>Email:</th>
+                        <th>DOB:</th>
+
+
+                    </tr>
+                    <tr>
+                        <td>{{name}}</td>
+                        <td></td>
+                        <td>{{email}}</td>
+                        <td>{{dob}}</td>
+                    </tr>
+                </table>
+
+                <h2>Report Details:</h2>
+
+                <table style="width:100%">
+
+                    {%for i in range(length)%}
+                    <tr>
+                        <th>{{kcol[i]}}:</th>
+                        <td>{{pentered[i]}}</td>
+                    </tr>
+                    {%endfor%}
+
+                </table>
+                <p style="text-align: center;">Final Predicted Output is</p> <h3 style="color:{{cor}};text-align: center;">{{predict_text}}</h3>
+            </div>
+           <input type="button" style="Text-align:centre; padding:2% 1%; display: block; width: 200px; margin: 0 auto; " onclick="printDiv('printableArea')" value="Generate Report" />
+		</div>
+	</div>
+	
+	
+	<div class="right">
+    <form action="{{url_for('resultK')}}" method="post" id="form">
+      <h5>Kidney Disease</h5>
+      <p >Enter the correct details of the patient below.</p> 
+
+      <div class="slidecontainer">
+        <input class="slider" min="0" max="4" step="0.01" value="" type="range" class="form-control-range" id="al", name="al" placeholder="al">
+         <p>Albumin: <span id="demo4"></span></p>
+    </div>
+     <div class="slidecontainer">
+           <input class="slider" min="0" max="5" step="0.01" value="" type="range" class="form-control-range" id="su", name="su" placeholder="su">
+         <p>Sugar: <span id="demo5"></span></p>
+     </div>
+     <div class="slidecontainer">
+          <input class="slider" min="0" max="1" step="1" value=""  type="range" class="form-control-range" id="rbc", name="rbc" placeholder="rbc">
+         <p>Red Blood Cells: <span id="demo6"></span></p>
+     </div>
+     <div class="slidecontainer">
+          <input class="slider" min="0" max="1" step="1" value="" type="range" class="form-control-range" id="pc", name="pc" placeholder="pc">
+         <p>Pus Cell: <span id="demo7"></span></p>
+     </div>
+
+
+     <div class="slidecontainer">
+        <input class="slider" min="0" max="1" step="1" value="" type="range" class="form-control-range" id="pcc", name="pcc" placeholder="pcc">
+         <p>Pus Cell Clumps: <span id="demo8"></span></p>
+    </div>
+    <div class="slidecontainer">
+           <input class="slider" min="0" max="1" step="1" value="" type="range" class="form-control-range" id="ba", name="ba" placeholder="ba">
+        <p>Bacteria: <span id="demo9"></span></p>
+    </div>
+<!--        <div class="slidecontainer">-->
+<!--             <input class="slider" min="0" max="500" step="1" value="" type="range" class="form-control-range" id="bgr", name="bgr" placeholder="bgr">-->
+<!--            <p>Blood Glucose Random:<span id="demo10"></span></p>-->
+<!--        </div>-->
+
+    <div class="slidecontainer">
+        <input class="slider" min="0" max="310" step="0.01" value="" type="range" class="form-control-range" id="bu", name="bu" placeholder="bu">
+        <p>Blood Urea: <span id="demo11"></span></p>
+    </div>
+
+     <div class="slidecontainer">
+          <input class="slider" min="0" max="16" step="0.01" value="" type="range" class="form-control-range" id="sc", name="sc" placeholder="sc">
+         <p>Serum Creatinine:<span id="demo12"></span></p>
+     </div>
+
+
+<!--        <div class="slidecontainer">-->
+<!--             <input class="slider" min="0.1" max="200" step="0.01" value="" type="range" class="form-control-range" id="sod", name="sod" placeholder="sod">-->
+<!--            <p>Sodium:<span id="demo13"></span></p>-->
+<!--        </div>-->
+<!--        <div class="slidecontainer">-->
+<!--           <input class="slider" min="0" max="50" step="0.01" value="" type="range" class="form-control-range" id="pot", name="pot" placeholder="pot">-->
+<!--            <p>Potassium: <span id="demo14"></span></p>-->
+<!--       </div>-->
+<!--        <div class="slidecontainer">-->
+<!--              <input class="slider" min="0" max="20" step="0.01" value="" type="range" class="form-control-range" id="hemo", name="hemo" placeholder="hemo">-->
+<!--            <p>Hemoglobin: <span id="demo15"></span></p>-->
+<!--        </div>-->
+<!--        <div class="slidecontainer">-->
+<!--             <input class="slider" min="0" max="60" step="0.1" value=""  type="range" class="form-control-range" id="pcv", name="pcv" placeholder="pcv">-->
+<!--            <p>Packed Cell Volume: <span id="demo16"></span></p>-->
+<!--        </div>-->
+<!--        <div class="slidecontainer">-->
+<!--             <input class="slider" min="3800" max="26400" step="1" value="" type="range" class="form-control-range" id="wc", name="wc" placeholder="wc">-->
+<!--            <p>White Blood Cell Count: <span id="demo17"></span></p>-->
+<!--        </div>-->
+
+
+<!--        <div class="slidecontainer">-->
+<!--           <input class="slider" min="0" max="10" step="0.01" value="" type="range" class="form-control-range" id="rc", name="rc" placeholder="rc">-->
+<!--            <p>Red Blood Cell Count: <span id="demo18"></span></p>-->
+<!--       </div>-->
+    <div class="slidecontainer">
+           <input class="slider" min="0" max="1" step="1" value="" type="range" class="form-control-range" id="htn", name="htn" placeholder="htn">
+        <p>Hypertension: <span id="demo19"></span></p>
+    </div>
+     <div class="slidecontainer">
+          <input class="slider" min="0" max="1" step="1" value="" type="range" class="form-control-range" id="dm", name="dm" placeholder="dm">
+         <p>Diabetes Mellitus:<span id="demo20"></span></p>
+     </div>
+<!--              <div class="slidecontainer">-->
+<!--           <input class="slider" min="0" max="1" step="1" value="" type="range" class="form-control-range" id="cad", name="cad" placeholder="cad">-->
+<!--            <p>Coronary Artery Disease: <span id="demo21"></span></p>-->
+<!--       </div>-->
+<!--        <div class="slidecontainer">-->
+<!--              <input class="slider" min="0" max="1" step="1" value="" type="range" class="form-control-range" id="appet", name="appet" placeholder="appet">-->
+<!--            <p>Appetite: <span id="demo22"></span></p>-->
+<!--        </div>-->
+     <div class="slidecontainer">
+          <input class="slider" min="0" max="1" step="1" value=""  type="range" class="form-control-range" id="pe", name="pe" placeholder="pe">
+         <p>Pedal Edema: <span id="demo23"></span></p>
+     </div>
+     <div class="slidecontainer">
+          <input class="slider" min="0" max="1" step="1" value="" type="range" class="form-control-range" id="ane", name="ane" placeholder="ane">
+         <p>Anemia: <span id="demo24"></span></p>
+     </div>
+
+      <button style="width: 100%;">Predict</button>      
+    </form>
+	</div>
+	
+</div>
+
+<script>
+    function printDiv(divName) {
+     var printContents = document.getElementById(divName).innerHTML;
+     var originalContents = document.body.innerHTML;
+
+     document.body.innerHTML = printContents;
+
+     window.print();
+
+     document.body.innerHTML = originalContents;
+}
+</script>
+
+<script>
+    var slider1 = document.getElementById("Age");
+    var output1 = document.getElementById("demo1");
+    output1.innerHTML = slider1.value; // Display the default slider value
+    
+    // Update the current slider value (each time you drag the slider handle)
+    slider1.oninput = function() {
+      output1.innerHTML = this.value;
+    }
+    </script>
+    
+    <script>
+    var slider2 = document.getElementById("bp");
+    var output2 = document.getElementById("demo2");
+    output2.innerHTML = slider2.value; // Display the default slider value
+    
+    // Update the current slider value (each time you drag the slider handle)
+    slider2.oninput = function() {
+      output2.innerHTML = this.value;
+    }
+    </script>
+    
+    <script>
+    var slider3 = document.getElementById("sg");
+    var output3 = document.getElementById("demo3");
+    output3.innerHTML = slider3.value; // Display the default slider value
+    
+    // Update the current slider value (each time you drag the slider handle)
+    slider3.oninput = function() {
+      output3.innerHTML = this.value;
+    }
+    </script>
+    
+    <script>
+    var slider4 = document.getElementById("al");
+    var output4 = document.getElementById("demo4");
+    output4.innerHTML = slider4.value; // Display the default slider value
+    
+    // Update the current slider value (each time you drag the slider handle)
+    slider4.oninput = function() {
+      output4.innerHTML = this.value;
+    }
+    </script>
+    <script>
+    var slider5 = document.getElementById("su");
+    var output5= document.getElementById("demo5");
+    output5.innerHTML = slider5.value; // Display the default slider value
+    
+    // Update the current slider value (each time you drag the slider handle)
+    slider5.oninput = function() {
+      output5.innerHTML = this.value;
+    }
+    </script>
+    
+    <script>
+    var slider6 = document.getElementById("rbc");
+    var output6 = document.getElementById("demo6");
+    output6.innerHTML = slider6.value; // Display the default slider value
+    
+    // Update the current slider value (each time you drag the slider handle)
+    slider6.oninput = function() {
+      output6.innerHTML = this.value;
+    }
+    </script>
+    
+    <script>
+    var slider7 = document.getElementById("pc");
+    var output7 = document.getElementById("demo7");
+    output7.innerHTML = slider7.value; // Display the default slider value
+    
+    // Update the current slider value (each time you drag the slider handle)
+    slider7.oninput = function() {
+      output7.innerHTML = this.value;
+    }
+    </script>
+    
+    <script>
+    var slider8 = document.getElementById("pcc");
+    var output8 = document.getElementById("demo8");
+    output8.innerHTML = slider8.value; // Display the default slider value
+    
+    // Update the current slider value (each time you drag the slider handle)
+    slider8.oninput = function() {
+      output8.innerHTML = this.value;
+    }
+    </script>
+    
+    <script>
+    var slider9 = document.getElementById("ba");
+    var output9 = document.getElementById("demo9");
+    output9.innerHTML = slider9.value; // Display the default slider value
+    
+    // Update the current slider value (each time you drag the slider handle)
+    slider9.oninput = function() {
+      output9.innerHTML = this.value;
+    }
+    </script>
+    
+    
+    <script>
+    var slider10 = document.getElementById("bgr");
+    var output10 = document.getElementById("demo10");
+    output10.innerHTML = slider10.value; // Display the default slider value
+    
+    // Update the current slider value (each time you drag the slider handle)
+    slider10.oninput = function() {
+      output10.innerHTML = this.value;
+    }
+    </script>
+    
+    
+    <script>
+    var slider11 = document.getElementById("bu");
+    var output11 = document.getElementById("demo11");
+    output11.innerHTML = slider11.value; // Display the default slider value
+    
+    // Update the current slider value (each time you drag the slider handle)
+    slider11.oninput = function() {
+      output11.innerHTML = this.value;
+    }
+    </script>
+    
+    <script>
+    var slider12 = document.getElementById("sc");
+    var output12 = document.getElementById("demo12");
+    output12.innerHTML = slider12.value; // Display the default slider value
+    
+    // Update the current slider value (each time you drag the slider handle)
+    slider12.oninput = function() {
+      output12.innerHTML = this.value;
+    }
+    </script>
+    
+    <script>
+    var slider13 = document.getElementById("sod");
+    var output13 = document.getElementById("demo13");
+    output13.innerHTML = slider13.value; // Display the default slider value
+    
+    // Update the current slider value (each time you drag the slider handle)
+    slider13.oninput = function() {
+      output13.innerHTML = this.value;
+    }
+    </script>
+    
+    <script>
+    var slider14 = document.getElementById("pot");
+    var output14 = document.getElementById("demo14");
+    output4.innerHTML = slider14.value; // Display the default slider value
+    
+    // Update the current slider value (each time you drag the slider handle)
+    slider14.oninput = function() {
+      output14.innerHTML = this.value;
+    }
+    </script>
+    <script>
+    var slider15 = document.getElementById("hemo");
+    var output15= document.getElementById("demo15");
+    output5.innerHTML = slider15.value; // Display the default slider value
+    
+    // Update the current slider value (each time you drag the slider handle)
+    slider15.oninput = function() {
+      output15.innerHTML = this.value;
+    }
+    </script>
+    
+    <script>
+    var slider16 = document.getElementById("pcv");
+    var output16 = document.getElementById("demo16");
+    output16.innerHTML = slider16.value; // Display the default slider value
+    
+    // Update the current slider value (each time you drag the slider handle)
+    slider16.oninput = function() {
+      output16.innerHTML = this.value;
+    }
+    </script>
+    
+    <script>
+    var slider17 = document.getElementById("wc");
+    var output17 = document.getElementById("demo17");
+    output17.innerHTML = slider17.value; // Display the default slider value
+    
+    // Update the current slider value (each time you drag the slider handle)
+    slider17.oninput = function() {
+      output17.innerHTML = this.value;
+    }
+    </script>
+    
+    <script>
+    var slider18 = document.getElementById("rc");
+    var output18 = document.getElementById("demo18");
+    output8.innerHTML = slider18.value; // Display the default slider value
+    
+    // Update the current slider value (each time you drag the slider handle)
+    slider18.oninput = function() {
+      output18.innerHTML = this.value;
+    }
+    </script>
+    
+    <script>
+    var slider19 = document.getElementById("htn");
+    var output19 = document.getElementById("demo19");
+    output19.innerHTML = slider19.value; // Display the default slider value
+    
+    // Update the current slider value (each time you drag the slider handle)
+    slider19.oninput = function() {
+      output19.innerHTML = this.value;
+    }
+    </script>
+    
+    
+    <script>
+    var slider20 = document.getElementById("dm");
+    var output20 = document.getElementById("demo20");
+    output20.innerHTML = slider20.value; // Display the default slider value
+    
+    // Update the current slider value (each time you drag the slider handle)
+    slider20.oninput = function() {
+      output20.innerHTML = this.value;
+    }
+    </script>
+    
+    <script>
+    var slider21 = document.getElementById("cad");
+    var output21 = document.getElementById("demo21");
+    output21.innerHTML = slider21.value; // Display the default slider value
+    
+    // Update the current slider value (each time you drag the slider handle)
+    slider21.oninput = function() {
+      output21.innerHTML = this.value;
+    }
+    </script>
+    
+    <script>
+    var slider22 = document.getElementById("appet");
+    var output22 = document.getElementById("demo22");
+    output22.innerHTML = slider22.value; // Display the default slider value
+    
+    // Update the current slider value (each time you drag the slider handle)
+    slider22.oninput = function() {
+      output22.innerHTML = this.value;
+    }
+    </script>
+    
+    <script>
+    var slider23 = document.getElementById("pe");
+    var output23 = document.getElementById("demo23");
+    output23.innerHTML = slider23.value; // Display the default slider value
+    
+    // Update the current slider value (each time you drag the slider handle)
+    slider23.oninput = function() {
+      output23.innerHTML = this.value;
+    }
+    </script>
+    
+    
+    <script>
+    var slider24 = document.getElementById("ane");
+    var output24 = document.getElementById("demo24");
+    output24.innerHTML = slider24.value; // Display the default slider value
+    
+    // Update the current slider value (each time you drag the slider handle)
+    slider24.oninput = function() {
+      output24.innerHTML = this.value;
+    }
+    </script>
+
+</body>
+</html>
